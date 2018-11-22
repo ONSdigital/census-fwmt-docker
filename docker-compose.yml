@@ -1,25 +1,5 @@
 version: '3'
 services:
-    job:
-      container_name: job
-      image: sdcplatform/fwmtjobsvcv2
-      ports:
-       - "${JOB_PORT}:9999"
-      networks:
-       - internal
-      environment:
-       - SPRING_RABBITMQ_HOST=rabbit
-    adapter:
-      container_name: adapter
-      image: sdcplatform/fwmtrmadapter
-      ports:
-       - "${ADAPTER_PORT}:9094"
-      networks:
-       - internal
-      environment:
-       - RABBITMQ_RM_HOSTNAME=rabbit
-       - RABBITMQ_FWMT_HOSTNAME=rabbit
-
     rabbit:
       container_name: rabbit
       image: rabbitmq:3.6.10-management
@@ -30,6 +10,29 @@ services:
        - "15671-15672:15671-15672"
       networks:
         - internal
+    job:
+      container_name: job
+      image: sdcplatform/fwmtjobsvcv2
+      ports:
+       - "${JOB_PORT}:9999"
+      networks:
+       - internal
+      environment:
+       - SPRING_RABBITMQ_HOST=rabbit
+      depends_on: 
+       - rabbit
+    adapter:
+      container_name: adapter
+      image: sdcplatform/fwmtrmadapter
+      ports:
+       - "${ADAPTER_PORT}:9094"
+      networks:
+       - internal
+      environment:
+       - RABBITMQ_RM_HOSTNAME=rabbit
+       - RABBITMQ_FWMT_HOSTNAME=rabbit
+      depends_on: 
+       - rabbit
 networks:
    internal:
      driver: bridge
