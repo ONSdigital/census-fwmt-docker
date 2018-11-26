@@ -33,6 +33,17 @@ services:
        - RABBITMQ_FWMT_HOSTNAME=rabbit
       depends_on: 
        - rabbit
+    mock:
+      container_name: mock
+      image: sdcplatform/fwmtmocks
+      ports:
+       - "${MOCK_PORT}:9099"
+      networks:
+       - internal
+      environment:
+       - RABBIT_HOST=rabbit
+      depends_on: 
+       - rabbit
 networks:
    internal:
      driver: bridge
