@@ -5,4 +5,4 @@ This repository contains the docker-compose for FWMT that can be used to set up 
 To start all services through docker run `docker-compose up -d` this will spin up all services locally on the default ports.
 
 ## View service logs
-To view the logs for one of the running services run `docker logs ` followed by the container name e.g `docker logs job`
+To view the logs for one of the running services run `docker logs` followed by the container name e.g `docker logs job`
