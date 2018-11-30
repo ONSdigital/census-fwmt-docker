@@ -19,6 +19,7 @@ services:
        - internal
       environment:
        - SPRING_RABBITMQ_HOST=rabbit
+       - TOTALMOBILE_URL=http://mock:9099/tm/Mock
       depends_on: 
        - rabbit
     adapter:
@@ -41,7 +42,8 @@ services:
       networks:
        - internal
       environment:
-       - RABBIT_HOST=rabbit
+       - RABBITMQ_RM_HOST=rabbit
+       - RABBITMQ_FWMT_HOST=rabbit
       depends_on: 
        - rabbit
 networks:
