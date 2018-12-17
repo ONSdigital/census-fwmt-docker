@@ -11,7 +11,7 @@ services:
       networks:
         - internal
     job:
-      container_name: censusjob
+      container_name: job
       image: sdcplatform/fwmt-census-job-service
       ports:
        - "${JOB_PORT}:9999"
@@ -23,7 +23,7 @@ services:
       depends_on: 
        - rabbit
     adapter:
-      container_name: censusrmadapter
+      container_name: adapter
       image: sdcplatform/fwmt-census-rm-adapter
       ports:
        - "${ADAPTER_PORT}:9094"
@@ -35,7 +35,7 @@ services:
       depends_on: 
        - rabbit
     mock:
-      container_name: censustmmock
+      container_name: mock
       image: sdcplatform/fwmt-census-mocks
       ports:
        - "${MOCK_PORT}:9099"
