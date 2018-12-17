@@ -1,7 +1,7 @@
 version: '3'
 services:
     rabbit:
-      container_name: rabbit
+      container_name: censusrabbit
       image: rabbitmq:3.6.10-management
       ports:
        - "4369:4369"
@@ -11,8 +11,8 @@ services:
       networks:
         - internal
     job:
-      container_name: job
-      image: sdcplatform/fwmtjobsvcv2
+      container_name: censusjob
+      image: sdcplatform/ffwmt-census-job-service
       ports:
        - "${JOB_PORT}:9999"
       networks:
@@ -23,8 +23,8 @@ services:
       depends_on: 
        - rabbit
     adapter:
-      container_name: adapter
-      image: sdcplatform/fwmtrmadapter
+      container_name: censusrmadapter
+      image: sdcplatform/fwmt-census-rm-adapter
       ports:
        - "${ADAPTER_PORT}:9094"
       networks:
@@ -35,8 +35,8 @@ services:
       depends_on: 
        - rabbit
     mock:
-      container_name: mock
-      image: sdcplatform/fwmtmocks
+      container_name: censustmmock
+      image: sdcplatform/fwmtcensusmocks
       ports:
        - "${MOCK_PORT}:9099"
       networks:
@@ -49,4 +49,3 @@ services:
 networks:
    internal:
      driver: bridge
-
