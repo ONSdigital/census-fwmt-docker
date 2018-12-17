@@ -36,7 +36,7 @@ services:
        - rabbit
     mock:
       container_name: censustmmock
-      image: sdcplatform/fwmtcensusmocks
+      image: sdcplatform/fwmt-census-mocks
       ports:
        - "${MOCK_PORT}:9099"
       networks:
